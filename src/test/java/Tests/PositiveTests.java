@@ -26,6 +26,17 @@ public class PositiveTests extends BaseTests {
         homePage.logout();
         loginPage.assertLoginPageURL();
     }
+    @Test
+    public void logoffTests25() {
+        homePage.logout();
+        loginPage.assertLoginPageURL();
+    }
+
+    @Test
+    public void logoffTests2() {
+        homePage.logout();
+        loginPage.assertLoginPageURL();
+    }
 
     @Test
     public void addToCartTest() {
