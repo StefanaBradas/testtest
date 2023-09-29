@@ -1,54 +1,90 @@
 package Tests;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static helper.Constant.LOGIN_PAGE_URL;
+import static helper.Constant.SUCCESSFUL_PURCHASE_MESSAGE;
 
 public class PositiveTests extends BaseTests {
 
-
-
-    @BeforeMethod
-    public void beforeMethod() {
-        driver.get(LOGIN_PAGE_URL);
-        loginPage.validLogin();
-    }
 
     @Test
     public void validLoginTest() {
         driver.get(LOGIN_PAGE_URL);
         loginPage.validLogin();
-        Assert.assertEquals(driver.getCurrentUrl(), HOME_PAGE_URL);
+        homePage.assertHomePageURL();
     }
 
     @Test
     public void logoffTest() {
-        loginPage.validLogin();
         homePage.logout();
-        Assert.assertEquals(driver.getCurrentUrl(), LOGIN_PAGE_URL);
+        loginPage.assertLoginPageURL();
+    }
+
+    @Test
+    public void logoffTests() {
+        homePage.logout();
+        loginPage.assertLoginPageURL();
     }
 
     @Test
     public void addToCartTest() {
         homePage.addToCart();
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/cart.html");
-        // koliko lista sadrzi itema
-
+        cartPage.assertCartPageURL();
+        cartPage.assertLength(1);
     }
 
     @Test
     public void removeFromCartTest() {
         homePage.addToCart();
         cartPage.removeFromCart();
-        Assert.assertEquals(driver.getCurrentUrl(), HOME_PAGE_URL);
+        logger.warn("Clicked on remove button");
+        cartPage.assertCartPageURL();
+        cartPage.assertLength(0);
     }
 
-
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
+    @Test
+    public void sortingByLowestPriceTest() {
+        homePage.assertSortedList();
     }
 
+    @Test
+    public void successfulPurchaseTest() {
+        homePage.addToCart();
+        cartPage.goToCheckout();
+        checkoutPage.fillInformation();
+        checkoutOverviewPage.finishPurchase();
+        checkoutOverviewPage.assertCheckoutPageURL();
+        checkoutOverviewPage.assertMessage(SUCCESSFUL_PURCHASE_MESSAGE);
+    }
+
+    @Test
+    public void continueShoppingFromCartPageTest() {
+        homePage.addToCart();
+        cartPage.continueShopping();
+        homePage.assertHomePageURL();
+    }
+
+    @Test
+    public void detailInfoTest() {
+        homePage.seeDetailInfo();
+        homePage.assertDetailInfoURL();
+    }
+
+    @Test
+    public void cancelingOrderTest() {
+        homePage.addToCart();
+        cartPage.goToCheckout();
+        checkoutPage.fillInformation();
+        checkoutOverviewPage.cancelOrder();
+        homePage.assertHomePageURL();
+        homePage.assertElementIsDisplayed(homePage.getAddToCartButton1());
+    }
+
+    @Test
+    public void aboutMeTest() {
+        homePage.seeAboutSection();
+        homePage.assertAboutPageURL();
+    }
 
 }

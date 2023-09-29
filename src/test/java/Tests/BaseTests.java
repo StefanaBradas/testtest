@@ -1,20 +1,20 @@
 package Tests;
 
-import Pages.CartPage;
-import Pages.HomePage;
-import Pages.LoginPage;
+import Pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.Set;
+
+
+import static helper.Constant.*;
+
 
 public abstract class BaseTests {
 
@@ -23,21 +23,39 @@ public abstract class BaseTests {
     LoginPage loginPage;
     HomePage homePage;
     CartPage cartPage;
+    CheckoutPage checkoutPage;
+    CheckoutOverviewPage checkoutOverviewPage;
 
+    Logger logger;
 
-@BeforeClass
-public void initialize() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-     driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    @BeforeMethod
+    public void beforeMethod() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
 
-      loginPage = new LoginPage(driver, driverWait);
-      homePage = new HomePage(driver, driverWait);
-      cartPage = new CartPage(driver, driverWait);
-}
+        driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-String HOME_PAGE_URL = "https://www.saucedemo.com/v1/inventory.html";
-String LOGIN_PAGE_URL = "https://www.saucedemo.com/v1/index.html";
+        initializePager();
+
+        driver.get(LOGIN_PAGE_URL);
+        driver.manage().window().maximize();
+        loginPage.validLogin();
+
+        logger = LogManager.getLogger(BaseTests.class.getName());
+    }
+
+    public void initializePager() {
+        loginPage = new LoginPage(driver, driverWait);
+        homePage = new HomePage(driver, driverWait);
+        cartPage = new CartPage(driver, driverWait);
+        checkoutPage = new CheckoutPage(driver, driverWait);
+        checkoutOverviewPage = new CheckoutOverviewPage(driver, driverWait);
+    }
+
+    @AfterMethod
+    public void afterClass() {
+        driver.quit();
+    }
 
 
 }
