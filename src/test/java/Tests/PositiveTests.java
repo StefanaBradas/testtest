@@ -29,6 +29,12 @@ public class PositiveTests extends BaseTests {
     }
 
     @Test
+    public void logoffTestAB() {
+        homePage.logout();
+        loginPage.assertLoginPageURL();
+    }
+
+    @Test
     public void logoffTests() {
         homePage.logout();
         loginPage.assertLoginPageURL();
