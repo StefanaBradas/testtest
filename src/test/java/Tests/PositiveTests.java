@@ -9,7 +9,7 @@ import static helper.Constant.SUCCESSFUL_PURCHASE_MESSAGE;
 public class PositiveTests extends BaseTests {
 
     @Test
-    public void validLoginTestonius() {
+    public void validLoginTestoniusss() {
         driver.get(LOGIN_PAGE_URL);
         loginPage.validLogin();
         homePage.assertHomePageURL();
