@@ -23,6 +23,20 @@ public class PositiveTests extends BaseTests {
     }
 
     @Test
+    public void validLoginTestaaaaaaaaaaa2() {
+        driver.get(LOGIN_PAGE_URL);
+        loginPage.validLogin();
+        homePage.assertHomePageURL();
+    }
+    @Test
+    public void validLoginTestaaaaaaaaaa2a2() {
+        driver.get(LOGIN_PAGE_URL);
+        loginPage.validLogin();
+        homePage.assertHomePageURL();
+    }
+
+
+    @Test
     public void logoffTest() {
         homePage.logout();
         loginPage.assertLoginPageURL();
