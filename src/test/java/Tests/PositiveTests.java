@@ -5,11 +5,18 @@ import org.testng.annotations.Test;
 import static helper.Constant.LOGIN_PAGE_URL;
 import static helper.Constant.SUCCESSFUL_PURCHASE_MESSAGE;
 
-public class PositiveTests extends BaseTests {
 
+public class PositiveTests extends BaseTests {
 
     @Test
     public void validLoginTest() {
+        driver.get(LOGIN_PAGE_URL);
+        loginPage.validLogin();
+        homePage.assertHomePageURL();
+    }
+
+    @Test
+    public void validLoginTestaaaaaaaaaaa() {
         driver.get(LOGIN_PAGE_URL);
         loginPage.validLogin();
         homePage.assertHomePageURL();
