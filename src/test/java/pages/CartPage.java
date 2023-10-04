@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,15 +8,18 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static helper.Constant.CART_PAGE_URL;
+import static helper.ConstantURL.CART_PAGE_URL;
 
 public class CartPage extends BasePage {
 
     @FindBy(className = "checkout_button")
     private WebElement checkoutButton;
-    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[2]/a[1]")
+
+   @FindBy(xpath = "//a[normalize-space()='Continue Shopping']")
     private WebElement continueShoppingButton;
-    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[1]/div[3]/div[2]/div[2]/button")
+
+    @FindBy(xpath = "//button[normalize-space()='REMOVE']")
+
     private WebElement removeButton;
 
     @FindBy(className = "cart_item")
@@ -34,11 +37,10 @@ public class CartPage extends BasePage {
 
     public void removeFromCart() {
         removeButton.click();
-//        logger.setLevel(Level.WARNING);
     }
 
     public void assertLength(int expectedNumberOfItemColumns) {
-        Assert.assertTrue(getItemList().size() == expectedNumberOfItemColumns);
+        Assert.assertEquals(expectedNumberOfItemColumns, getItemList().size());
     }
 
 

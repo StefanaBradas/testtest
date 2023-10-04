@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All tests" parallel="tests" thread-count="2">
+
+    <test name="Positive test">
+        <parameter name="browserName" value="chrome"/>
+        <classes>
+            <class name="tests.PositiveTests">
+                <methods>
+                    <exclude name="logoffTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+        <test name="Negative tests">
+            <parameter name="browserName" value="edge"/>
+            <classes>
+                <class name="tests.NegativeTests"/>
+            </classes>
+        </test>
+</suite>

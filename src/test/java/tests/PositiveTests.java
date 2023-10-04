@@ -1,40 +1,19 @@
-package Tests;
+package tests;
+
 
 import org.testng.annotations.Test;
 
-import static helper.Constant.LOGIN_PAGE_URL;
-import static helper.Constant.SUCCESSFUL_PURCHASE_MESSAGE;
-
+import static helper.ConstantForLogin.SUCCESSFUL_PURCHASE_MESSAGE;
+import static helper.ConstantURL.LOGIN_PAGE_URL;
 
 public class PositiveTests extends BaseTests {
 
     @Test
-    public void validLoginTestoniussss() {
+    public void validLoginTest() {
         driver.get(LOGIN_PAGE_URL);
         loginPage.validLogin();
         homePage.assertHomePageURL();
     }
-
-    @Test
-    public void validLoginTestaaaaaaaaaaa() {
-        driver.get(LOGIN_PAGE_URL);
-        loginPage.validLogin();
-        homePage.assertHomePageURL();
-    }
-
-    @Test
-    public void validLoginTestaaaaaaaaaaa2() {
-        driver.get(LOGIN_PAGE_URL);
-        loginPage.validLogin();
-        homePage.assertHomePageURL();
-    }
-    @Test
-    public void validLoginTestaaaaaaaaaa2a2() {
-        driver.get(LOGIN_PAGE_URL);
-        loginPage.validLogin();
-        homePage.assertHomePageURL();
-    }
-
 
     @Test
     public void logoffTest() {
@@ -42,28 +21,6 @@ public class PositiveTests extends BaseTests {
         loginPage.assertLoginPageURL();
     }
 
-    @Test
-    public void logoffTestAB() {
-        homePage.logout();
-        loginPage.assertLoginPageURL();
-    }
-
-    @Test
-    public void logoffTests() {
-        homePage.logout();
-        loginPage.assertLoginPageURL();
-    }
-    @Test
-    public void logoffTests25() {
-        homePage.logout();
-        loginPage.assertLoginPageURL();
-    }
-
-    @Test
-    public void logoffTests2() {
-        homePage.logout();
-        loginPage.assertLoginPageURL();
-    }
 
     @Test
     public void addToCartTest() {
@@ -76,7 +33,6 @@ public class PositiveTests extends BaseTests {
     public void removeFromCartTest() {
         homePage.addToCart();
         cartPage.removeFromCart();
-        logger.warn("Clicked on remove button");
         cartPage.assertCartPageURL();
         cartPage.assertLength(0);
     }
@@ -93,7 +49,7 @@ public class PositiveTests extends BaseTests {
         checkoutPage.fillInformation();
         checkoutOverviewPage.finishPurchase();
         checkoutOverviewPage.assertCheckoutPageURL();
-        checkoutOverviewPage.assertMessage(SUCCESSFUL_PURCHASE_MESSAGE);
+        checkoutOverviewPage.assertSuccessfulMessage(SUCCESSFUL_PURCHASE_MESSAGE);
     }
 
     @Test

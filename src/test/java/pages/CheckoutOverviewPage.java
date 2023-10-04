@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import static helper.Constant.CHECKOUT_PAGE_URL;
+import static helper.ConstantURL.CHECKOUT_PAGE_URL;
 
 public class CheckoutOverviewPage extends BasePage {
 
@@ -38,7 +38,7 @@ public class CheckoutOverviewPage extends BasePage {
         cancelButton.click();
     }
 
-    public void assertMessage(String expectedMessage) {
+    public void assertSuccessfulMessage(String expectedMessage) {
         Assert.assertEquals(getThankYouMessage().getText(), expectedMessage);
     }
 

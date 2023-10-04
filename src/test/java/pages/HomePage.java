@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static helper.Constant.*;
+import static helper.ConstantForLogin.LOW_TO_HIGH_PRICE_SORT;
+import static helper.ConstantURL.*;
 
 public class HomePage extends BasePage {
 
@@ -58,15 +59,12 @@ public class HomePage extends BasePage {
         Select select = new Select(sortingMenu);
         select.selectByVisibleText(LOW_TO_HIGH_PRICE_SORT);
 
-
-        //kom
-        //todo dfuuhu
-
         for (WebElement listOfPrice : listOfPrices) {
             String string = listOfPrice.getText().substring(1);
             double num = Double.parseDouble(string);
             doubleList.add(num);
         }
+
         List<Double> newList = new ArrayList<>(doubleList);
         Collections.sort(newList);
 
@@ -77,7 +75,6 @@ public class HomePage extends BasePage {
     public WebElement getAddToCartButton1() {
         return addToCartButton1;
     }
-
 
     public void logout() {
         dropDownMenu.click();
