@@ -21,7 +21,6 @@ public class CheckoutPage extends BasePage {
 
     public CheckoutPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
-
     }
 
     public void fillInformation() {

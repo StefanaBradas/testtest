@@ -7,9 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import static helper.ConstantForLogin.STANDARD_USER_PASSWORD;
-import static helper.ConstantForLogin.STANDARD_USER_USERNAME;
-import static helper.ConstantURL.LOGIN_PAGE_URL;
+import static helper.ConstantsForLogin.*;
+import static helper.ConstantsURL.LOGIN_PAGE_URL;
 
 public class LoginPage extends BasePage {
 
@@ -52,28 +51,14 @@ public class LoginPage extends BasePage {
     }
 
     public void lockedOutUserLogin() {
-        usernameField.sendKeys("locked_out_user");
+        usernameField.sendKeys(LOCKED_OUT_USER);
         passwordField.sendKeys(STANDARD_USER_PASSWORD);
         loginButton.click();
     }
-
-    public void problemUserLogin() {
-        usernameField.sendKeys("problem_user");
-        passwordField.sendKeys(STANDARD_USER_PASSWORD);
-        loginButton.click();
-    }
-
-    public void performanceGlitchUserLogin() {
-        usernameField.sendKeys("performance_glitch_user");
-        passwordField.sendKeys(STANDARD_USER_PASSWORD);
-        loginButton.click();
-    }
-
 
     public void assertErrorMessageText(String expectedMessage) {
         Assert.assertEquals(errorMessage.getText(), expectedMessage);
     }
-
 
     public void assertLoginPageURL() {
         Assert.assertEquals(driver.getCurrentUrl(), LOGIN_PAGE_URL);

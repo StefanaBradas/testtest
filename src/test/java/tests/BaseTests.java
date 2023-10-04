@@ -12,7 +12,7 @@ import pages.*;
 
 import java.time.Duration;
 
-import static helper.ConstantURL.LOGIN_PAGE_URL;
+import static helper.ConstantsURL.LOGIN_PAGE_URL;
 
 public abstract class BaseTests {
 

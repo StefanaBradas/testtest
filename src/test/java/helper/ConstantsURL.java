@@ -1,6 +1,6 @@
 package helper;
 
-public class ConstantURL {
+public class ConstantsURL {
 
 
     public static final String HOME_PAGE_URL = "https://www.saucedemo.com/v1/inventory.html";

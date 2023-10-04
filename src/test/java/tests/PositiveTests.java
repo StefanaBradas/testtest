@@ -3,8 +3,8 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static helper.ConstantForLogin.SUCCESSFUL_PURCHASE_MESSAGE;
-import static helper.ConstantURL.LOGIN_PAGE_URL;
+import static helper.ConstantsForLogin.SUCCESSFUL_PURCHASE_MESSAGE;
+import static helper.ConstantsURL.LOGIN_PAGE_URL;
 
 public class PositiveTests extends BaseTests {
 

@@ -3,9 +3,9 @@ package tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static helper.ConstantForLogin.INVALID_LOGIN_MESSAGE;
-import static helper.ConstantForLogin.LOCKED_OUT_USER_LOGIN_MESSAGE;
-import static helper.ConstantURL.LOGIN_PAGE_URL;
+import static helper.ConstantsForLogin.INVALID_LOGIN_MESSAGE;
+import static helper.ConstantsForLogin.LOCKED_OUT_USER_LOGIN_MESSAGE;
+import static helper.ConstantsURL.LOGIN_PAGE_URL;
 
 
 public class NegativeTests extends BaseTests {

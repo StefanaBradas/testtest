@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import static helper.ConstantURL.CHECKOUT_PAGE_URL;
+import static helper.ConstantsURL.CHECKOUT_PAGE_URL;
 
 public class CheckoutOverviewPage extends BasePage {
 

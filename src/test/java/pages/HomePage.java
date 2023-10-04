@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static helper.ConstantForLogin.LOW_TO_HIGH_PRICE_SORT;
-import static helper.ConstantURL.*;
+import static helper.ConstantsForLogin.LOW_TO_HIGH_PRICE_SORT;
+import static helper.ConstantsURL.*;
 
 public class HomePage extends BasePage {
 
@@ -42,10 +42,9 @@ public class HomePage extends BasePage {
     private WebElement aboutButton;
 
     @FindBy(className = "inventory_item_price")
-    private List<WebElement> listOfPrices;
+    private List<WebElement> actualListOfPricesString;
 
-
-    public List<Double> doubleList = new ArrayList<>();
+    public List<Double> actualListOfPricesDouble = new ArrayList<>();
 
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -59,16 +58,16 @@ public class HomePage extends BasePage {
         Select select = new Select(sortingMenu);
         select.selectByVisibleText(LOW_TO_HIGH_PRICE_SORT);
 
-        for (WebElement listOfPrice : listOfPrices) {
+        for (WebElement listOfPrice : actualListOfPricesString) {
             String string = listOfPrice.getText().substring(1);
             double num = Double.parseDouble(string);
-            doubleList.add(num);
+            actualListOfPricesDouble.add(num);
         }
 
-        List<Double> newList = new ArrayList<>(doubleList);
-        Collections.sort(newList);
+        List<Double> expectedListOfPrices = new ArrayList<>(actualListOfPricesDouble);
+        Collections.sort(expectedListOfPrices);
 
-        Assert.assertEquals(doubleList, newList);
+        Assert.assertEquals(actualListOfPricesDouble, expectedListOfPrices);
     }
 
 
@@ -105,13 +104,14 @@ public class HomePage extends BasePage {
         Assert.assertEquals(driver.getCurrentUrl(), ABOUT_SITE_URL);
     }
 
+    public void assertHomePageURL() {
+        Assert.assertEquals(driver.getCurrentUrl(), HOME_PAGE_URL);
+    }
+
     public void assertElementIsDisplayed(WebElement webElement) {
         Assert.assertTrue(webElement.isDisplayed());
     }
 
-    public void assertHomePageURL() {
-        Assert.assertEquals(driver.getCurrentUrl(), HOME_PAGE_URL);
-    }
 
     public void driverWaitUntilVisibilityOf(WebElement webElement) {
         driverWait.until(ExpectedConditions.visibilityOf(webElement));

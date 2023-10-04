@@ -8,7 +8,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static helper.ConstantURL.CART_PAGE_URL;
+import static helper.ConstantsURL.CART_PAGE_URL;
 
 public class CartPage extends BasePage {
 
@@ -34,9 +34,16 @@ public class CartPage extends BasePage {
         return itemList;
     }
 
-
     public void removeFromCart() {
         removeButton.click();
+    }
+
+    public void goToCheckout() {
+        checkoutButton.click();
+    }
+
+    public void continueShopping() {
+        continueShoppingButton.click();
     }
 
     public void assertLength(int expectedNumberOfItemColumns) {
@@ -48,13 +55,5 @@ public class CartPage extends BasePage {
         Assert.assertEquals(driver.getCurrentUrl(), CART_PAGE_URL);
     }
 
-
-    public void goToCheckout() {
-        checkoutButton.click();
-    }
-
-    public void continueShopping() {
-        continueShoppingButton.click();
-    }
 
 }
