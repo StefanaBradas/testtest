@@ -1,5 +1,10 @@
 package tests;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,6 +12,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import pages.*;
 
@@ -23,10 +29,55 @@ public abstract class BaseTests {
     public CartPage cartPage;
     public CheckoutPage checkoutPage;
     public CheckoutOverviewPage checkoutOverviewPage;
+    public ExtentSparkReporter sparkReporter;
+    public ExtentReports extent;
+    public ExtentTest test;
 
+    @BeforeAll
+    public void beforeAll () {
+
+
+//        extent = new ExtentReports();
+//        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/testReport.html");
+//
+//        sparkReporter.config().setOfflineMode(true);
+//        sparkReporter.config().setDocumentTitle("Simple automation Report");
+//        sparkReporter.config().setReportName("Test report");
+//        sparkReporter.config().setTheme(Theme.STANDARD);
+//        sparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, YYYY, hh:mm a '('zz')'");
+//        sparkReporter.config().setEncoding("UTF-8");
+//
+//        extent.attachReporter(sparkReporter);
+
+
+//        sparkReporter.config(
+//                ExtentSparkReporterConfig.builder()
+//                        .theme(Theme.STANDARD)
+//                        .documentTitle("My report")
+//                        .offlineMode(true)
+//                        .build()
+//        );                                           // OVO JE DRUGI NACIN
+
+    }
+
+//    @BeforeSuite
+//    public void beforeSuite () {
+//        extent = new ExtentReports();
+//        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/testReport.html");
+//
+//        sparkReporter.config().setOfflineMode(true);
+//        sparkReporter.config().setDocumentTitle("Simple automation Report");
+//        sparkReporter.config().setReportName("Test report");
+//        sparkReporter.config().setTheme(Theme.STANDARD);
+//        sparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, YYYY, hh:mm a '('zz')'");
+//        sparkReporter.config().setEncoding("UTF-8");
+//
+//        extent.attachReporter(sparkReporter);
+//
+//    }
 
     @Parameters("browserName")
-    @BeforeMethod
+    @BeforeMethod (groups = {"regressionTests", "end-to-endTests"})
     public void beforeMethod(String browserName) {
         WebDriverManager.chromedriver().setup();
 
@@ -53,7 +104,7 @@ public abstract class BaseTests {
         checkoutOverviewPage = new CheckoutOverviewPage(driver, driverWait);
     }
 
-    @AfterMethod
+    @AfterMethod (groups = {"regressionTests", "end-to-endTests"})
     public void afterClass() {
         driver.quit();
     }

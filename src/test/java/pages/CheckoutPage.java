@@ -1,10 +1,14 @@
 package pages;
 
 import com.github.javafaker.Faker;
+import org.asynchttpclient.Response;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.ApiDTO;
+
+import static io.restassured.RestAssured.given;
 
 
 public class CheckoutPage extends BasePage {
@@ -22,6 +26,7 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
+
 
     public void fillInformation() {
         Faker faker = new Faker();

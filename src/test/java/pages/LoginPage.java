@@ -1,6 +1,7 @@
 package pages;
 
 import com.github.javafaker.Faker;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,8 @@ import org.testng.Assert;
 import static helper.ConstantsForLogin.*;
 import static helper.ConstantsURL.LOGIN_PAGE_URL;
 
+
+@Getter
 public class LoginPage extends BasePage {
 
     @FindBy(id = "user-name")
@@ -18,12 +21,8 @@ public class LoginPage extends BasePage {
     private WebElement passwordField;
     @FindBy(id = "login-button")
     private WebElement loginButton;
-
     @FindBy(xpath = "//*[@id=\"login_button_container\"]/div/form/h3")
-
     private WebElement errorMessage;
-
-    @FindBy
 
     Faker faker = new Faker();
 
@@ -58,6 +57,10 @@ public class LoginPage extends BasePage {
 
     public void assertErrorMessageText(String expectedMessage) {
         Assert.assertEquals(errorMessage.getText(), expectedMessage);
+    }
+
+    public boolean assertErrorMessageText2 (String expectedMessage) {
+       return  (errorMessage.getText().equals(expectedMessage));
     }
 
     public void assertLoginPageURL() {

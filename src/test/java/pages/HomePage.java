@@ -15,6 +15,7 @@ import java.util.List;
 import static helper.ConstantsForLogin.LOW_TO_HIGH_PRICE_SORT;
 import static helper.ConstantsURL.*;
 
+
 public class HomePage extends BasePage {
 
 
@@ -53,17 +54,19 @@ public class HomePage extends BasePage {
 
     public void assertSortedList() {
 
+        //selecting sorting option
         sortingMenu.click();
-
         Select select = new Select(sortingMenu);
         select.selectByVisibleText(LOW_TO_HIGH_PRICE_SORT);
 
+        //converting string values to doubles in new list
         for (WebElement listOfPrice : actualListOfPricesString) {
             String string = listOfPrice.getText().substring(1);
             double num = Double.parseDouble(string);
             actualListOfPricesDouble.add(num);
         }
 
+        //sorting the new double list
         List<Double> expectedListOfPrices = new ArrayList<>(actualListOfPricesDouble);
         Collections.sort(expectedListOfPrices);
 

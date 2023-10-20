@@ -8,23 +8,25 @@ import static helper.ConstantsURL.LOGIN_PAGE_URL;
 
 public class PositiveTests extends BaseTests {
 
-    @Test
+    @Test (groups = {"regressionTests", "end-to-endTests"})
     public void validLoginTest() {
         driver.get(LOGIN_PAGE_URL);
         loginPage.validLogin();
+
         homePage.assertHomePageURL();
     }
 
-    @Test
+    @Test (groups = {"end-to-endTests"})
     public void logoffTest() {
         homePage.logout();
         loginPage.assertLoginPageURL();
     }
 
 
-    @Test
+    @Test (groups = {"regressionTests"})
     public void addToCartTest() {
         homePage.addToCart();
+
         cartPage.assertCartPageURL();
         cartPage.assertLength(1);
     }
@@ -37,7 +39,7 @@ public class PositiveTests extends BaseTests {
         cartPage.assertLength(0);
     }
 
-    @Test
+    @Test(groups = {"end-to-endTests"})
     public void sortingByLowestPriceTest() {
         homePage.assertSortedList();
     }
